@@ -1,0 +1,20 @@
+.bug-filter {
+    display: flex;
+    align-items: center;
+    padding: 2rem 0.5rem;
+}
+
+.bug-filter .filter-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-right: 2rem;
+}
+
+.bug-filter h3 {
+    margin-right: 4rem;
+}
+
+.bug-filter input {
+    min-width: 180px;
+}
