@@ -11,6 +11,8 @@ export const bugService = {
     getById,
     save,
     remove,
+    downloadBugs,
+    getDefaultFilter
 }
 
 
@@ -42,4 +44,15 @@ function remove(bugId) {
 
 function save(bug) {
     return axios.get(BASE_URL + "save", { params: bug }).then(res => res.data)
+}
+
+function downloadBugs() {
+    return axios.get(BASE_URL + "download", { responseType: 'blob' })
+}
+
+function getDefaultFilter() {
+    return {
+        title: '',
+        severity: '',
+    }
 }
