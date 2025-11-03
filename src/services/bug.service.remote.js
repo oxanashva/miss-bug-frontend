@@ -14,8 +14,22 @@ export const bugService = {
 }
 
 
-function query() {
-    return axios.get(BASE_URL).then(res => res.data)
+function query(filterBy = {}) {
+    filterBy = { ...filterBy }
+    return axios.get(BASE_URL)
+        .then(res => res.data)
+        .then(bugs => {
+            if (!filterBy.title) filterBy.title = ''
+            if (!filterBy.severity) filterBy.severity = ''
+            const regex = new RegExp(filterBy.title, 'i')
+
+            return bugs.filter(bug => {
+                const titleMatch = regex.test(bug.title)
+                const severityMatch = (filterBy.severity === '' || bug.severity == filterBy.severity)
+
+                return titleMatch && severityMatch
+            })
+        })
 }
 
 function getById(bugId) {
