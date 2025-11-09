@@ -1,4 +1,3 @@
-import React from 'react'
 import './assets/style/main.css'
 
 import ReactDOM from 'react-dom/client'

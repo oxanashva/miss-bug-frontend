@@ -16,38 +16,30 @@ export const bugService = {
 }
 
 
-function query(filterBy = {}) {
-    filterBy = { ...filterBy }
-    return axios.get(BASE_URL)
-        .then(res => res.data)
-        .then(bugs => {
-            if (!filterBy.title) filterBy.title = ''
-            if (!filterBy.severity) filterBy.severity = ''
-            const regex = new RegExp(filterBy.title, 'i')
-
-            return bugs.filter(bug => {
-                const titleMatch = regex.test(bug.title)
-                const severityMatch = (filterBy.severity === '' || bug.severity == filterBy.severity)
-
-                return titleMatch && severityMatch
-            })
-        })
+async function query(filterBy = {}) {
+    const { data: bugs } = await axios.get(BASE_URL, { params: filterBy })
+    return bugs
 }
 
-function getById(bugId) {
-    return axios.get(BASE_URL + bugId).then(res => res.data)
+async function getById(bugId) {
+    const { data: bug } = await axios.get(BASE_URL + bugId)
+    return bug
 }
 
-function remove(bugId) {
-    return axios.get(BASE_URL + bugId + "/remove")
+async function remove(bugId) {
+    const { data } = await axios.delete(BASE_URL + bugId)
+    return data
 }
 
-function save(bug) {
-    return axios.get(BASE_URL + "save", { params: bug }).then(res => res.data)
+async function save(bugToSave) {
+    const url = BASE_URL + (bugToSave._id || "")
+    const method = bugToSave._id ? "put" : "post"
+    const { data: savedBug } = await axios[method](url, bugToSave)
+    return savedBug
 }
 
-function downloadBugs() {
-    return axios.get(BASE_URL + "download", { responseType: 'blob' })
+async function downloadBugs() {
+    return await axios.get(BASE_URL + "download", { responseType: 'blob' })
 }
 
 function getDefaultFilter() {
