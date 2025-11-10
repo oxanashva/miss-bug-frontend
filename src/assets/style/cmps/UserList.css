@@ -1,0 +1,22 @@
+.user-list {
+    list-style: none;
+    padding: 0;
+
+    & .user-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 50px 50px;
+        gap: 15px;
+        padding: 0.5rem;
+        text-align: center;
+        background-color: var(--clr1bg-light);
+
+        &:not(:last-child) {
+            border-bottom: 1px solid var(--clr1bg);
+        }
+    }
+
+    & .user-header {
+        background-color: var(--clr1bg);
+        font-weight: bold;
+    }
+}
