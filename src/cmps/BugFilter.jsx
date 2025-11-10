@@ -15,8 +15,20 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
         if (type === "number") {
             value = value === "" ? "" : +value
         }
+        if (type === "select-multiple") {
+            value = Array.from(target.options).filter(option => option.selected).map(option => option.value)
+        }
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
+
+    // TODO: https://mui.com/material-ui/react-select/#multiple-select
+    const labels = [
+        "ui-bug",
+        "need-CR",
+        "backend",
+        "critical",
+        "dev-branch"
+    ]
 
     return <section className="bug-filter">
         <h3>Filter By</h3>
@@ -43,6 +55,19 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
                 placeholder="Search by severity (1-4)"
                 onChange={handleChange}
             />
+        </div>
+        <div className="filter-wrapper">
+            <label htmlFor="labels">Labels </label>
+            <select
+                id="labels"
+                name="labels"
+                value={filterByToEdit.labels}
+                placeholder="Search by labels"
+                multiple
+                onChange={handleChange}
+            >
+                {labels.map(label => <option key={label} value={label}>{label}</option>)}
+            </select>
         </div>
     </section>
 }
