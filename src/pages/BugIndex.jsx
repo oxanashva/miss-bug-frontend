@@ -79,21 +79,25 @@ export function BugIndex() {
             // Get the response object, not just res.data
             const response = await bugService.downloadBugs()
             const blob = response.data
-            console.log('blob :', blob);
 
-            // 1. Create the Blob URL
+            // 1. Create a dynamic filename (e.g., 'Bugs_Report_2025-11-10.pdf')
+            const now = new Date()
+            const dateString = now.toLocaleDateString("en-CA").replace(/-/g, '_')
+            const filename = `Bugs_Report_${dateString}.pdf`
+
+            // 2. Create the Blob URL
             const url = window.URL.createObjectURL(blob)
 
-            // 2. Create and set up the temporary <a> element
+            // 3. Create and set up the temporary <a> element
             const link = document.createElement('a')
             link.href = url
-            link.setAttribute('download', 'bugs-report.pdf') // Set filename
+            link.setAttribute('download', filename) // Set filename
 
-            // 3. Trigger the download
+            // 4. Trigger the download
             document.body.appendChild(link)
             link.click()
 
-            // 4. Clean up
+            // 5. Clean up
             document.body.removeChild(link)
             window.URL.revokeObjectURL(url)
 
