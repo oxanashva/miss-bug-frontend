@@ -24,7 +24,7 @@ export function BugList({ bugs, onRemoveBug, onEditBug }) {
                             Edit
                         </button>
                     </div>
-                    <Link to={`/bug/${bug._id}`}>Details</Link>
+                    <Link to={`/bug/${bug._id}`} className="details-btn">Details</Link>
                 </li>
             ))}
         </ul>

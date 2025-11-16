@@ -13,3 +13,11 @@
     align-items: center;
     background-color: var(--clr1bg);
 }
+
+.bug-list .details-btn {
+    margin-block: 0.5rem;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
