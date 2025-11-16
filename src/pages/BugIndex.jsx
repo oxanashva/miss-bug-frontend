@@ -109,16 +109,26 @@ export function BugIndex() {
     }
 
     return (
-        <section >
-            <h3>Bugs App</h3>
+        <section className="bug-index">
+            <h2>Bugs App</h2>
             <main>
-                <button onClick={onAddBug}>Add Bug ⛐</button>
+                <button
+                    className="add-bug"
+                    onClick={onAddBug}
+                >
+                    Add Bug ⛐
+                </button>
                 <button
                     onClick={onDownloadBugs}
                     disabled={isDownloading}
                 >
                     {isDownloading ? 'Downloading...' : 'Download Bug Report 📃'}
                 </button>
+                <div className="paging">
+                    <label htmlFor="paging">Use Paging</label>
+                    <input id="paging" type="checkbox" />
+                </div>
+
                 <BugFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
                 <BugList bugs={bugs} onRemoveBug={onRemoveBug} onEditBug={onEditBug} />
             </main>

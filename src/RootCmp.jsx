@@ -11,17 +11,19 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 export function App() {
     return (
         <Router>
-            <AppHeader />
-            <main className='container'>
-                <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/user' element={<UserIndex />} />
-                    <Route path='/bug' element={<BugIndex />} />
-                    <Route path='/bug/:bugId' element={<BugDetails />} />
-                    <Route path='/about' element={<AboutUs />} />
-                </Routes>
-            </main>
-            <AppFooter />
+            <div className="main-layout">
+                <AppHeader />
+                <main className='container full'>
+                    <Routes>
+                        <Route path='/' element={<Home />} />
+                        <Route path='/user' element={<UserIndex />} />
+                        <Route path='/bug' element={<BugIndex />} />
+                        <Route path='/bug/:bugId' element={<BugDetails />} />
+                        <Route path='/about' element={<AboutUs />} />
+                    </Routes>
+                </main>
+                <AppFooter />
+            </div>
         </Router>
     )
 }

@@ -31,7 +31,7 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
     ]
 
     return <section className="bug-filter">
-        <h3>Filter By</h3>
+        <h2>Filter By</h2>
         <div className="filter-wrapper">
             <label htmlFor="title">Title </label>
             <input

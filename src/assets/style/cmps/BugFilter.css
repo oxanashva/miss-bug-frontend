@@ -1,7 +1,7 @@
 .bug-filter {
     display: flex;
     align-items: center;
-    padding: 2rem 0.5rem;
+    padding-block: 1rem;
 }
 
 .bug-filter .filter-wrapper {
@@ -11,7 +11,7 @@
     margin-right: 2rem;
 }
 
-.bug-filter h3 {
+.bug-filter h2 {
     margin-right: 4rem;
 }
 

@@ -1,9 +1,9 @@
-.bug-details h3 {
+.bug-details h2 {
     color: var(--clr1);
     font-size: 2em;
 }
 
-.bug-details h4 {
+.bug-details h3 {
     color: var(--clr2);
 }
 

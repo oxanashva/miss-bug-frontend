@@ -9,7 +9,7 @@ export function AppHeader() {
     }, [])
 
     return (
-        <header className='app-header container'>
+        <header className='app-header container full'>
             <div className='header-container'>
                 <h1>Bugs are Forever</h1>
                 <nav className='app-nav'>

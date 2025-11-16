@@ -1,7 +1,7 @@
 .app-header {
+    height: 65px;
     background-color: var(--clr1);
     color: var(--clr2bg-light);
-    
 }
 
 .header-container {

@@ -1,0 +1,12 @@
+.bug-index {
+    & .add-bug {
+        margin-inline-start: 0;
+    }
+
+    .paging {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-block: 1rem;
+    }
+}

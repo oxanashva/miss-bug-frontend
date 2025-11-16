@@ -43,13 +43,13 @@ export function BugDetails() {
 
     if (!bug) return <h1>loadings....</h1>
 
-    return <div className="bug-details main-layout">
-        <h3>Bug Details 🐛</h3>
-        <h4>{bug.title}</h4>
+    return <section className="bug-details">
+        <h2>Bug Details 🐛</h2>
+        <h3>{bug.title}</h3>
         <p>Severity: <span>{bug.severity}</span></p>
         <p>Description: <span>{bug.description}</span></p>
         <p><Link to="/bug">Back to List</Link></p>
-    </div>
+    </section>
 
 }
 

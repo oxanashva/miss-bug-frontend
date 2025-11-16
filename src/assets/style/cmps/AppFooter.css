@@ -1,6 +1,6 @@
 footer {
-    background-color: lightblue;
-    height: 80px;
     display: flex;
     align-items: center;
+    height: 65px;
+    background-color: lightblue;
 }

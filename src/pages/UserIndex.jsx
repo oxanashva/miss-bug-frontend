@@ -17,7 +17,7 @@ export function UserIndex() {
 
     return (
         <section>
-            <h3>Users</h3>
+            <h2>Users</h2>
             <main>
                 <UserList users={users} />
             </main>
