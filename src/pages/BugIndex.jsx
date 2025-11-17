@@ -1,8 +1,9 @@
+import { useState, useEffect } from 'react'
 import { bugService } from '../services/bug'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
+import { userService } from '../services/user'
+import { useNavigate } from 'react-router'
 import { BugList } from '../cmps/BugList.jsx'
-import { useState } from 'react'
-import { useEffect } from 'react'
 import { BugFilter } from '../cmps/BugFilter.jsx'
 
 
@@ -11,8 +12,15 @@ export function BugIndex() {
     const [filterBy, setFilterBy] = useState(bugService.getDefaultFilter())
     const [isDownloading, setIsDownloading] = useState(false)
 
+    const navigate = useNavigate()
+    const loggedinUser = userService.getLoggedinUser()
+
     useEffect(() => {
-        loadBugs()
+        if (!loggedinUser) {
+            navigate('/login')
+        } else {
+            loadBugs()
+        }
     }, [filterBy])
 
     async function loadBugs() {

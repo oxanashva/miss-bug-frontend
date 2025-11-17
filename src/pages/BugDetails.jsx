@@ -2,9 +2,10 @@
 import { useState } from 'react'
 import { bugService } from '../services/bug'
 import { showErrorMsg } from '../services/event-bus.service.js'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { userService } from '../services/user'
 
 
 export function BugDetails() {
@@ -12,8 +13,15 @@ export function BugDetails() {
     const [bug, setBug] = useState(null)
     const { bugId } = useParams()
 
+    const navigate = useNavigate()
+    const loggedinUser = userService.getLoggedinUser()
+
     useEffect(() => {
-        loadBug()
+        if (!loggedinUser) {
+            navigate("/login")
+        } else {
+            loadBug()
+        }
     }, [])
 
     async function loadBug() {

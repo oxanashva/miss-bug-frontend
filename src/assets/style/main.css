@@ -12,6 +12,7 @@
 
 /* Pages */
 
+@import "pages/LoginSignup.css";
 @import "pages/UserIndex.css";
 @import "pages/BugIndex.css";
 @import "pages/BugDetails.css";
