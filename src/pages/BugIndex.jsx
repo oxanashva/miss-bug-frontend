@@ -31,11 +31,9 @@ export function BugIndex() {
     async function onRemoveBug(bugId) {
         try {
             await bugService.remove(bugId)
-            console.log('Deleted Succesfully!')
             setBugs(prevBugs => prevBugs.filter((bug) => bug._id !== bugId))
             showSuccessMsg('Bug removed')
         } catch (err) {
-            console.log('Error from onRemoveBug ->', err)
             showErrorMsg('Cannot remove bug')
         }
     }
@@ -55,11 +53,6 @@ export function BugIndex() {
             title,
             severity,
             description,
-            createdAt: Date.now(),
-            creator: {
-                _id: loggedinUser._id,
-                fullname: loggedinUser.fullname
-            }
         }
 
         try {
@@ -85,7 +78,11 @@ export function BugIndex() {
             return
         }
 
-        const bugToSave = { ...bug, severity, description }
+        const bugToSave = {
+            _id: bug._id,
+            severity,
+            description
+        }
 
         try {
             const savedBug = await bugService.save(bugToSave)

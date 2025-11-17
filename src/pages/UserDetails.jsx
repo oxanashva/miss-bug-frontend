@@ -46,7 +46,11 @@ export function UserDetails() {
             return
         }
 
-        const bugToSave = { ...bug, severity, description }
+        const bugToSave = {
+            _id: bug._id,
+            severity,
+            description
+        }
 
         try {
             const savedBug = await bugService.save(bugToSave)
