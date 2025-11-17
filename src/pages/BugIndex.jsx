@@ -41,37 +41,59 @@ export function BugIndex() {
     }
 
     async function onAddBug() {
+        const title = prompt('Bug title?')
+        if (title === null) return
+
+        const severityInput = prompt('Bug severity? (Enter a number)')
+        if (severityInput === null) return
+        const severity = +severityInput
+
+        const description = prompt('Bug description?')
+        if (description === null) return
+
         const bug = {
-            title: prompt('Bug title?'),
-            severity: +prompt('Bug severity?'),
-            description: prompt('Bug description?'),
+            title,
+            severity,
+            description,
             createdAt: Date.now(),
+            creator: {
+                _id: loggedinUser._id,
+                fullname: loggedinUser.fullname
+            }
         }
+
         try {
             const savedBug = await bugService.save(bug)
-            console.log('Added Bug', savedBug)
-            setBugs(prevBugs => [savedBug, ...prevBugs,])
+            setBugs(prevBugs => [savedBug, ...prevBugs])
             showSuccessMsg('Bug added')
         } catch (err) {
-            console.log('Error from onAddBug ->', err)
             showErrorMsg('Cannot add bug')
         }
     }
 
     async function onEditBug(bug) {
-        const severity = +prompt('New severity?')
-        const description = prompt('New description?')
-        const bugToSave = { ...bug, severity, description }
-        try {
+        const newSeverityInput = prompt('New severity? (Enter a number)')
 
+        if (newSeverityInput === null || newSeverityInput.trim() === '') {
+            return
+        }
+        const severity = +newSeverityInput
+
+        const description = prompt('New description?')
+
+        if (description === null || description.trim() === '') {
+            return
+        }
+
+        const bugToSave = { ...bug, severity, description }
+
+        try {
             const savedBug = await bugService.save(bugToSave)
-            console.log('Updated Bug:', savedBug)
             setBugs(prevBugs => prevBugs.map((currBug) =>
                 currBug._id === savedBug._id ? savedBug : currBug
             ))
             showSuccessMsg('Bug updated')
         } catch (err) {
-            console.log('Error from onEditBug ->', err)
             showErrorMsg('Cannot update bug')
         }
     }

@@ -27,6 +27,20 @@ a.active {
     text-decoration: underline;
 }
 
+.avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-inline: 2rem;
+
+    & img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+}
+
 
 @media (max-width: 720px) {
     .app-header {
