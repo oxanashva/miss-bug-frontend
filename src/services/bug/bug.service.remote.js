@@ -4,7 +4,7 @@ const axios = Axios.create({
     withCredentials: true
 })
 
-const BASE_URL = import.meta.env.DEV ? "//localhost:3030/api/" : "/api/"
+const BASE_URL = import.meta.env.DEV ? "//localhost:3030/api/bug/" : "/api/bug/"
 
 export const bugService = {
     query,
