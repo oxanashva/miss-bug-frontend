@@ -8,8 +8,6 @@ export function UserPreview({ user }) {
             <p>{fullname}</p>
             <p>{username}</p>
             <p>{score}</p>
-            <button>🖋️</button>
-            <button>❌</button>
         </>
     )
 }
