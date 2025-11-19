@@ -157,7 +157,7 @@ export function BugIndex() {
                 </div>
 
                 <BugFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-                <BugList bugs={bugs} onRemoveBug={onRemoveBug} onEditBug={onEditBug} />
+                <BugList bugs={bugs} onRemoveBug={onRemoveBug} onEditBug={onEditBug} loggedinUser={loggedinUser} />
             </main>
         </section>
     )

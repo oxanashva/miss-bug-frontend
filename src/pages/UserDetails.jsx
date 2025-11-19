@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react"
-import { UserContext } from "../contexts/UserContext"
+import { useEffect, useState } from "react"
 import { bugService } from "../services/bug/bug.service.remote"
 import { BugList } from "../cmps/BugList"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
+import { userService } from "../services/user"
 
 export function UserDetails() {
-    const { loggedinUser } = useContext(UserContext)
+    const loggedinUser = userService.getLoggedinUser()
     const [userBugs, setUserBugs] = useState([])
 
     useEffect(() => {
@@ -70,7 +70,7 @@ export function UserDetails() {
             <p>Your score: {score}</p>
             {userBugs.length === 0 && <p>No bugs yet</p>}
             {userBugs.length > 0 && <h3>Bugs created by you:</h3>}
-            {userBugs.length > 0 && <BugList bugs={userBugs} onRemoveBug={onRemoveBug} onEditBug={onEditBug} />}
+            {userBugs.length > 0 && <BugList bugs={userBugs} onRemoveBug={onRemoveBug} onEditBug={onEditBug} loggedinUser={loggedinUser} />}
         </section>
     )
 } 
