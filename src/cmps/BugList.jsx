@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { BugPreview } from './BugPreview'
 
 export function BugList({ bugs, onRemoveBug, onEditBug, loggedinUser }) {
-    console.log('loggedinUser :', loggedinUser);
 
     function checkBugCreator(bug) {
         return bug.creator._id === loggedinUser._id || loggedinUser.isAdmin
