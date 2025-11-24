@@ -9,7 +9,7 @@ export function UserIndex() {
 
     useEffect(() => {
         loadUsers()
-    }, [users])
+    }, [])
 
     async function loadUsers() {
         const users = await userService.query()
@@ -26,7 +26,7 @@ export function UserIndex() {
         }
     }
 
-    async function onEdit(userId) {
+    async function onEdit(user) {
         const newScoreInput = prompt('New score? (Enter a number)')
 
         if (newScoreInput === null || newScoreInput.trim() === '') {
@@ -42,14 +42,14 @@ export function UserIndex() {
         const isAdmin = newIsAdminInput === 'true' ? true : false
 
         const userToSave = {
-            _id: userId,
+            _id: user._id,
             score,
             isAdmin
         }
 
         try {
             const savedUser = await userService.save(userToSave)
-            setUsers(prevUsers => prevUsers.map(user => user._id === savedUser._id ? savedUser : user))
+            setUsers(prevUsers => prevUsers.map(user => user._id === userToSave._id ? savedUser : user))
             showSuccessMsg('User updated')
         } catch (error) {
             showErrorMsg('Cannot update user')

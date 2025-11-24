@@ -13,7 +13,7 @@ export function UserList({ users, onRemove, onEdit }) {
             {users.map((user) => (
                 <li key={user._id} className="user-item">
                     <UserPreview user={user} />
-                    <button onClick={() => onEdit(user._id)}>🖋️</button>
+                    <button onClick={() => onEdit(user)}>🖋️</button>
                     <button onClick={() => onRemove(user._id)}>❌</button>
                 </li>
             ))}
