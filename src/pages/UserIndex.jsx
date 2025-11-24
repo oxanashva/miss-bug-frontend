@@ -34,22 +34,22 @@ export function UserIndex() {
         }
         const score = +newScoreInput
 
-        const newIsAdminInput = prompt('New isAdmin? (Enter true or false)')
+        const newIsAdminInput = confirm('New isAdmin?')
 
-        if (newIsAdminInput === null || newIsAdminInput.trim() === '') {
+        if (newIsAdminInput === null) {
             return
         }
         const isAdmin = newIsAdminInput === 'true' ? true : false
 
         const userToSave = {
-            _id: user._id,
+            ...user,
             score,
             isAdmin
         }
 
         try {
             const savedUser = await userService.save(userToSave)
-            setUsers(prevUsers => prevUsers.map(user => user._id === userToSave._id ? savedUser : user))
+            setUsers(prevUsers => prevUsers.map(u => u._id === savedUser._id ? savedUser : u))
             showSuccessMsg('User updated')
         } catch (error) {
             showErrorMsg('Cannot update user')
